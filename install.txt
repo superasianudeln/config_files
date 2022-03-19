@@ -1,19 +1,25 @@
-sudo nvidia-installer-dkms
+sudo pacman -Syyu alacritty nemo zsh python-pip nodejs npm lua ranger neovim
+sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore gstreamer0.10-plugins --needed
+sudo pacman -S vlc
 
-sudo pacman -S linux-headers acpi_call-dkms mesa-demos xorg-xrandr xf86-video-intel git
+sudo pacman -S gcc gdb doxygen cmake clang	gtest  	lldb --needed
 
-sudo modprobe acpi_call
+sudo pacman -S p7zip p7zip-plugins unrar tar rsync --needed
 
-sudo rm /etc/X11/xorg.conf.d/20-nvidia.conf
-
-git clone https://github.com/dglt1/optimus-switch.git
-cd ~/optimus-switch
-chmod +x install.sh
-sudo ./install.sh
-sudo set-nvidia.sh
+sudo pacman -S intel-ucode
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+sudo sed -i 's,#MAKEFLAGS="-j2",MAKEFLAGS="-j$(nproc)",g' /etc/makepkg.conf
+
+sudo sed -i 's,#MAKEFLAGS="-j2",MAKEFLAGS="-j$(nproc)",g' /etc/makepkg.conf
+
+yay -S clion-gdb biicode clion-cmake clion-jre  clion-lldb
+yay -S clion-gdb clion visual-studio-code-bin spotify nerd-fonts-fira-code 
+
+git clone https://github.com/superasianudeln/config_files.git
